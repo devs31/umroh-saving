@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('savings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('umroh_package_id')->constrained()->onDelete('cascade');
+            $table->decimal('target_amount', 15, 2); // Target sesuai harga paket
+            $table->decimal('current_balance', 15, 2)->default(0); // Saldo saat ini
+            $table->string('status')->default('active'); // Contoh: active, completed
             $table->timestamps();
         });
     }

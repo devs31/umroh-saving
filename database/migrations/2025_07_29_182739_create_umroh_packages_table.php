@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('umroh_packages', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->decimal('price', 15, 2); // Harga paket
+            $table->integer('duration_days'); // Durasi dalam hari
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

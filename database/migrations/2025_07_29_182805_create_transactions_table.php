@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('saving_id')->constrained()->onDelete('cascade');
+            $table->decimal('amount', 15, 2); // Jumlah yang disetor
+            $table->string('proof_of_payment'); // Path ke file bukti transfer
+            $table->string('status')->default('pending'); // Contoh: pending, approved, rejected
+            $table->text('notes')->nullable(); // Catatan dari admin jika ditolak
             $table->timestamps();
         });
     }
